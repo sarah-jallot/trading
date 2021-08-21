@@ -1,7 +1,6 @@
 import krakenex
 import time
-from trading.utils import *
-from trading.investing_strategies import analyze
+from investing_strategies import analyze
 
 
 if __name__ == '__main__':
