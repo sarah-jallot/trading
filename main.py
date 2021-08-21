@@ -1,9 +1,7 @@
 import krakenex
-import json
 import time
-import datetime
-import calendar
-from utils import *
+from trading.utils import *
+from trading.investing_strategies import analyze
 
 
 if __name__ == '__main__':
@@ -12,6 +10,6 @@ if __name__ == '__main__':
     pair = ('XETH','ZUSD') #cryptocurrency name versus USD
     since = str(int(time.time() - 3600))
    # print(json.dumps(get_fake_trades_history(), indent=4))  # timestamp from one hour ago
-    analyze(pair, since)
+    analyze(api, pair, since)
 
 
