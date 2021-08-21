@@ -1,21 +1,24 @@
-from trading.utils import *
+from utils import get_crypto_data, get_fake_balance, get_last_trade,fake_sell, fake_buy
 
-def analyze(api, pair, since):
+def simple_analyze(pair, since, api):
     """
     Basic investing strategy.
     """
-    data = get_crypto_data(api, pair[0]+pair[1], since)
+    data = get_crypto_data(pair[0]+pair[1], since, api)
     lowest = 0
     highest = 0
     for prices in data:
-        balance = get_fake_balance()
-        last_trade = get_last_trade(pair[0]+pair[1])
+        balance = get_fake_balance(api)
+        last_trade = get_last_trade(pair[0]+pair[1], api)
         last_trade_price = float(last_trade["price"])
+
         open_ = float(prices[1])
         high_ = float(prices[2])
         low_ = float(prices[3])
         close_ = float(prices[4])
+
         did_sell = False
+
         try:
             balance[pair[0]]
             selling_point_win = last_trade_price*1.005
@@ -27,7 +30,7 @@ def analyze(api, pair, since):
             elif open <= selling_point_loss or close_ <= selling_point_loss:
                 # sell at a loss
                 did_sell = True
-                fake_sell(pair)
+                fake_sell(pair, api=api)
         except:
             pass
 

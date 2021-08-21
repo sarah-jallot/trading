@@ -130,5 +130,5 @@ dmypy.json
 
 # File
 kraken.key
-balance.json
-tradeshistory.json
+fake_data/balance_init.json
+fake_data/tradeshistory_init.json
